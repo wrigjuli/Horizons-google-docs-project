@@ -5,6 +5,10 @@ import createStyles from 'draft-js-custom-styles';
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:1337');
+
+socket.emit('login', {user:'demi', pass:'demi'}, function(result){
+  console.log('login result:', result);
+});
 /* Define custom styles */
 const customStyleMap = {
   selection0: {
