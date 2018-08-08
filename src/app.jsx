@@ -3,12 +3,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import createStyles from 'draft-js-custom-styles';
 import io from 'socket.io-client';
+import axios from 'axios';
 
 const socket = io('http://localhost:1337');
 
-socket.emit('login', {user:'demi', pass:'demi'}, function(result){
-  console.log('login result:', result);
-});
 /* Define custom styles */
 const customStyleMap = {
   selection0: {
@@ -48,6 +46,12 @@ function getBlockStyle(block) {
 
 /* list of button we need to render */
 
+// class Editor extends React.Component {
+//   constructor(props){
+//     super(props);
+//   }
+// }
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -78,6 +82,28 @@ export default class App extends React.Component {
   _onSizeClick(e) {
     e.preventDefault();
     this.onChange(styles['fontSize'].toggle(this.state.editorState, '45px'))
+  }
+
+  componentDidMount(){
+    socket.emit('login', {user:'demi', pass:'demi'}, function(result){
+      console.log('login result:', result);
+    });
+
+    socket.emit('createDocument', {myDataFromClient: "hi"}, (res)=> console.log("response from server", res))
+
+    socket.emit('testUser', {
+      username: 'Julie',
+      password: 'hello1'},
+    (res) => console.log("Saved?", res))
+
+    socket.emit('testDoc', {
+      title: 'my first document',
+      body: 'this is so cool',
+      createdby: {
+        username: 'Julie',
+        password: 'hello1'}
+    },
+    (res) => console.log("Saved?", res))
   }
 
   render() {
