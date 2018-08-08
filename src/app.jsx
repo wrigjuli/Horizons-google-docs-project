@@ -2,11 +2,9 @@ import React from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import createStyles from 'draft-js-custom-styles';
 import io from 'socket.io-client';
-import { Menu, MenuItem, Popover, RaisedButton } from 'material-ui';
+import { MenuItem, Popover, RaisedButton } from 'material-ui';
 // import Popover from 'material-ui/core/Popover';
 const socket = io('http://localhost:1337');
-
-
 /* Define custom styles */
 const customStyleMap = {
   small: {
@@ -149,7 +147,7 @@ export default class App extends React.Component {
         >
         <MenuItem onClick={(e) => this.handleSizeChange(e, '12px')}>Small</MenuItem>
         <MenuItem onClick={(e) => this.handleSizeChange(e, '36pxpx')}>Medium</MenuItem>
-        <MenuItem onClick={(e) => this.handleSizeChange(e, '54px')}>Large</MenuItem>
+        <MenuItem onClick={this.handleMenuClose.bind(this)}>Large</MenuItem>
       </Popover>
 
 
