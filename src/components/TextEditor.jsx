@@ -149,8 +149,18 @@ export default class TextEditor extends React.Component {
       render() {
         console.log('menu open', this.state.fontSizeOpen);
 
-        return (<div>
-          <h1>Horizons Docs</h1>
+        return (
+          <div>
+            <div className="App">
+              <header className="App-header">
+                <img src="https://image.flaticon.com/icons/svg/118/118306.svg" className="App-logo" />
+                <h1>Horizons Docs</h1>
+              </header>
+            </div>
+
+          <div className="scrollbar" id="style-7">
+            <div className="force-overflow">asdf</div>
+          </div>
           <RaisedButton color="primary" onMouseDown={(e) => this._onBoldClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133731.svg" /></RaisedButton>
           <RaisedButton onMouseDown={(e) => this._onUClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133729.svg" /></RaisedButton><br/>
           <RaisedButton onMouseDown={(e) => this._onIClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133730.svg" /></RaisedButton>
@@ -201,6 +211,6 @@ export default class TextEditor extends React.Component {
         blockStyleFn={getBlockStyle}
         onChange={this.onChange}
       />
-    </div>);
-  }
+    </div>
+  )};
 }
