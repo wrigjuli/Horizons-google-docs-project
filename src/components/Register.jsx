@@ -37,14 +37,21 @@ export default class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    socket.emit('createUser', {
-      username: this.state.username,
-      password: this.state.password},
-      (res) => {
-        console.log("Saved?", res)
-        this.props.SwitchToLog();
-      }
-    )
+    if (this.state.password === this.state.password2 && this.state.password.length >= 1 && this.state.username.length >= 1){
+      socket.emit('createUser', {
+        username: this.state.username,
+        password: this.state.password},
+        (res) => {
+          console.log("Saved?", res)
+          this.props.SwitchToLog();
+        }
+      )
+    } else {
+      this.setState({
+        error: "please enter matching passwords and username and password of length greater than or equal to one",
+      })
+    }
+
   }
 
   render(){
