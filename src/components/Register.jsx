@@ -11,7 +11,9 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      password2: '',
+      error: ''
     }
   }
 
@@ -27,15 +29,29 @@ export default class Login extends React.Component {
     })
   }
 
+  handlePassword2(event) {
+    this.setState({
+      password2: event.target.value
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-
+    socket.emit('createUser', {
+      username: this.state.username,
+      password: this.state.password},
+      (res) => {
+        console.log("Saved?", res)
+        this.props.SwitchToLog();
+      }
+    )
   }
 
   render(){
     return (
       <div>
-        <h1> Login </h1>
+        <h1> Register </h1>
+        {this.state.error}
         <input type="text"
           onChange = {(event) => this.handleUsername(event)} name=""
           value={this.state.username}
@@ -46,7 +62,14 @@ export default class Login extends React.Component {
           value={this.state.password}
           placeholder = "password"
         />
-        <button>Submit</button>
+
+        <input type="text"
+          onChange = {(event) => this.handlePassword2(event)} name=""
+          value={this.state.password2}
+          placeholder = "password2"
+        />
+        <button onClick = {(event)=>this.handleSubmit(event)}>Submit</button>
+        <button onClick= {()=>this.props.SwitchToLog()}>Login Instead!</button>
       </div>
     )
   }

@@ -14,7 +14,8 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      switchToReg: false
     }
   }
 
@@ -24,10 +25,24 @@ export default class App extends React.Component {
     })
   }
 
+  SwitchToReg(){
+    this.setState({
+      switchToReg: true
+    })
+  }
+
+  SwitchToLog(){
+    this.setState({
+      switchToReg: false
+    })
+  }
+
   render(){
     return (
       <div>
-        {this.state.loggedIn ? <TextEditor/> : <Login LogMeIn = {()=>this.LogMeIn()}/>}
+        {this.state.loggedIn ? <TextEditor/> : this.state.switchToReg ? <Register
+          SwitchToLog = {()=>this.SwitchToLog()} /> :
+          <Login SwitchToReg = {() => this.SwitchToReg()} LogMeIn = {()=>this.LogMeIn()}/>}
       </div>
     )
   }

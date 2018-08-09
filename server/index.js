@@ -21,7 +21,7 @@ io.on('connection', function (socket) {
             next({loggedIn: false})
           }
         });
-        
+
     // if (data.username === 'Julie' && data.password === 'hello1') next({loggedIn: true})
     // else next({loggedIn: false})
   });
@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
     next({responseFromServer: 'Hi'})
   })
 
-  socket.on('testUser', function(data,next) {
+  socket.on('createUser', function(data,next) {
     console.log("username and password from client", data);
 
     var user = new User({

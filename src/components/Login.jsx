@@ -66,6 +66,9 @@ export default class Login extends React.Component {
           placeholder = "password"
         />
         <button onClick = {(event) => this.handleSubmit(event)}>Submit</button>
+        <button onClick = {()=>this.props.SwitchToReg()}>
+          Register!
+        </button>
       </div>
     )
   }

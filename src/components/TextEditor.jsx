@@ -60,11 +60,6 @@ export default class TextEditor extends React.Component {
 
     socket.emit('createDocument', {myDataFromClient: "hi"}, (res)=> console.log("response from server", res))
 
-    socket.emit('testUser', {
-      username: 'Julie',
-      password: 'hello1'},
-      (res) => console.log("Saved?", res))
-
     socket.emit('testDoc', {
         title: 'my first document',
         body: 'this is so cool',
