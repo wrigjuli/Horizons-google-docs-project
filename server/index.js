@@ -11,11 +11,21 @@ mongoose.connect(process.env.MONGODB_URI);
 io.on('connection', function (socket) {
   socket.on('login', function (data, next) {
     console.log('LOGIN REQUEST', data)
-    const {user, pass} = data;
 
-    if (user === 'demi' && pass === 'demi') next({loggedIn: true})
-    else next({loggedIn: false})
+        User.findOne({ username: data.username }, function(err, user) {
+          if (err) {
+            next(err);
+          } else if (user && user.password === data.password){
+            next({loggedIn: true})
+          } else {
+            next({loggedIn: false})
+          }
+        });
+        
+    // if (data.username === 'Julie' && data.password === 'hello1') next({loggedIn: true})
+    // else next({loggedIn: false})
   });
+
   socket.on('createDocument', function(data, next) {
     console.log('data from client ', data);
     next({responseFromServer: 'Hi'})
