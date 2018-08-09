@@ -16,10 +16,6 @@ export default class Login extends React.Component {
     }
   }
 
-  componentDidMount(){
-    alert();
-  }
-
   handleUsername(event) {
     this.setState({
       username: event.target.value
