@@ -57,7 +57,12 @@ export default class Login extends React.Component {
   render(){
     return (
       <div className="App">
-        <h1> Register </h1>
+        <div className="App">
+          <header className="App-header">
+            <img src="https://image.flaticon.com/icons/svg/118/118306.svg" className="App-logo" />
+            <h1>Register</h1>
+          </header>
+        </div>
         {this.state.error}
         <input type="text"
           onChange = {(event) => this.handleUsername(event)} name=""

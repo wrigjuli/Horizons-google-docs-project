@@ -139,59 +139,56 @@ export default class TextEditor extends React.Component {
               </header>
             </div>
 
-          <div className="scrollbar" id="style-7">
-            <div className="force-overflow">asdf</div>
-          </div>
-          <RaisedButton color="primary" onMouseDown={(e) => this._onBoldClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133731.svg" /></RaisedButton>
-          <RaisedButton onMouseDown={(e) => this._onUClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133729.svg" /></RaisedButton><br/>
-          <RaisedButton onMouseDown={(e) => this._onIClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133730.svg" /></RaisedButton>
-          <RaisedButton onMouseDown={(e) => this._onSizeClick(e)}>Text Size</RaisedButton><br/>
-          <RaisedButton onMouseDown={(e) => this._onCenterClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133718.svg" /></RaisedButton>
-          <RaisedButton onMouseDown={(e) => this._onLeftClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133720.svg" /></RaisedButton><br/>
-          <RaisedButton onMouseDown={(e) => this._onRightClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133719.svg" /></RaisedButton>
-          <RaisedButton onMouseDown={(e) => this._onJustifyClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133717.svg" /></RaisedButton><br/>
-          <RaisedButton onMouseDown={(e) => this._onColorClick(e)}>Text Color</RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onBoldClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133731.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onUClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133729.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onIClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133730.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onSizeClick(e)  }>Text Size</RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onCenterClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133718.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onLeftClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133720.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onRightClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133719.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onJustifyClick(e)}><img style={{width:'15px'}} src="https://image.flaticon.com/icons/svg/133/133717.svg" /></RaisedButton>
+            <RaisedButton style={{ width: '20px' }} className="text-align-right" onMouseDown={(e) => this._onColorClick(e)}>Text Color</RaisedButton>
 
 
-        <Popover
-          open={this.state.fontSizeOpen}
-          onRequestClose={this.handleMenuClose.bind(this)}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left'
-          }}
-          >
-          <MenuItem onClick={(e) => this.handleSizeChange(e, '12px')}>Small</MenuItem>
-          <MenuItem onClick={(e) => this.handleSizeChange(e, '36px')}>Medium</MenuItem>
-          <MenuItem onClick={(e) => this.handleSizeChange(e, '54px')}>Large</MenuItem>
-        </Popover>
+          <Popover
+            open={this.state.fontSizeOpen}
+            onRequestClose={this.handleMenuClose.bind(this)}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left'
+            }}
+            >
+            <MenuItem onClick={(e) => this.handleSizeChange(e, '12px')}>Small</MenuItem>
+            <MenuItem onClick={(e) => this.handleSizeChange(e, '36px')}>Medium</MenuItem>
+            <MenuItem onClick={(e) => this.handleSizeChange(e, '54px')}>Large</MenuItem>
+          </Popover>
 
-        <Popover
-          open={this.state.fontColorOpen}
-          onRequestClose={this.handleMenuClose.bind(this)}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left'
-          }}
-          >
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'yellow')}>Yellow</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'pink')}>Pink</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'red')}>Red</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'blue')}>Blue</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'green')}>Green</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'black')}>Black</MenuItem>
-          <MenuItem onClick={(e) => this.handleColorChange(e, 'white')}>White</MenuItem>
-        </Popover>
+          <Popover
+            open={this.state.fontColorOpen}
+            onRequestClose={this.handleMenuClose.bind(this)}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left'
+            }}
+            >
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'yellow')}>Yellow</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'pink')}>Pink</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'red')}>Red</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'blue')}>Blue</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'green')}>Green</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'black')}>Black</MenuItem>
+            <MenuItem onClick={(e) => this.handleColorChange(e, 'white')}>White</MenuItem>
+          </Popover>
 
-      <Editor
-        editorState={this.state.editorState}
-        customStyleMap={customStyleMap}
-        customStyleFn={customStyleFn}
-        blockStyleFn={getBlockStyle}
-        onChange={this.onChange}
-      />
+        <Editor
+          editorState={this.state.editorState}
+          customStyleMap={customStyleMap}
+          customStyleFn={customStyleFn}
+          blockStyleFn={getBlockStyle}
+          onChange={this.onChange}
+        />
     </div>
   )};
 }
