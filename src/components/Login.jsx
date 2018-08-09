@@ -49,20 +49,20 @@ export default class Login extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="App">
         <h1> Login </h1>
         {this.state.error}
         <input type="text"
           onChange = {(event) => this.handleUsername(event)} name=""
           value={this.state.username}
-          placeholder = "username"
-        />
+          placeholder = "Username"
+        /><br />
         <input type="text"
           onChange = {(event) => this.handlePassword(event)} name=""
           value={this.state.password}
-          placeholder = "password"
-        />
-        <button onClick = {(event) => this.handleSubmit(event)}>Submit</button>
+          placeholder = "Password"
+        /><br />
+        <button onClick = {(event) => this.handleSubmit(event)}>Submit</button><br />
         <button onClick = {()=>this.props.SwitchToReg()}>
           Register!
         </button>
