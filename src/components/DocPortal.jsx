@@ -21,7 +21,10 @@ export default class DocPortal extends React.Component {
       request: true
     },
   (res) => {
-    console.log("response from getDocs is", res);
+    this.setState({
+      docs: res.docs
+    })
+    console.log("this.state.docs is ", this.state.docs);
   })
   }
 
@@ -58,6 +61,13 @@ export default class DocPortal extends React.Component {
           onChange = {(event) => this.handleCreate(event)} type="text" name="" value={this.state.create}
           placeholder = "create new Document"/>
         <button onClick= {(e)=>this.handleCreateDoc(e)}>Create Doc!</button>
+        <ul>
+        {this.state.docs.map((doc)=>{
+          return(
+            <li key={doc._id}><button onClick = {()=>this.props.SwitchToDoc(doc._id)}>{doc.title}</button></li>
+          )
+        })}
+      </ul>
       </div>
 
     )

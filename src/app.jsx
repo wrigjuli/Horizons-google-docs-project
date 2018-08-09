@@ -10,6 +10,7 @@ import Register from './components/Register';
 import DocPortal from './components/DocPortal';
 // import Popover from 'material-ui/core/Popover';
 
+const socket = io('http://localhost:1337');
 
 export default class App extends React.Component {
   constructor(props){
@@ -18,6 +19,7 @@ export default class App extends React.Component {
       loggedIn: false,
       switchToReg: false,
       UserID: '',
+      doc: undefined,
     }
   }
 
@@ -45,11 +47,27 @@ export default class App extends React.Component {
     })
   }
 
+  SwitchToDoc(id){
+    socket.emit('getSingleDoc', {
+      id: id
+    },
+    (res) => {
+      console.log("Response from getSingleDoc is ", res);
+      this.setState({
+        doc: res.doc
+      })
+      console.log("this.state.doc is ", this.state.doc);
+    })
+  }
+
   render(){
     return (
       <div>
-        {this.state.loggedIn ? <DocPortal
-        PassID = {this.state.UserID}/> : this.state.switchToReg ? <Register
+        {this.state.loggedIn ?
+          this.state.doc? <TextEditor/> : <DocPortal
+            PassID = {this.state.UserID}
+            SwitchToDoc = {(id)=>this.SwitchToDoc(id)}
+          /> : this.state.switchToReg ? <Register
           SwitchToLog = {(id)=>this.SwitchToLog(id)} /> :
           <Login
             PassID = {(id) => this.PassID(id)}

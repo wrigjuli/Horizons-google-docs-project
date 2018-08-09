@@ -52,15 +52,6 @@ export default class TextEditor extends React.Component {
     this.onChange = editorState => this.setState({ editorState });
   }
 
-  componentDidMount() {
-    socket.on('test', function(data, next) {
-      console.log('data from client ', data);
-      next({responseFromServer: 'Hi'})
-    })
-
-    socket.emit('test', {myDataFromClient: "hi"}, (res)=> console.log("response from server", res))
-
-      }
 
   handleMenuClose() {
     console.log('close');
@@ -70,102 +61,6 @@ export default class TextEditor extends React.Component {
     });
   }
 
-<<<<<<< HEAD
-  _onBoldClick(e) {
-    e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  }
-  _onUClick(e) {
-    e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-  _onIClick(e) {
-    e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
-  }
-  _onCenterClick(e) {
-    console.log('center');
-    e.preventDefault();
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'text-align-center'));
-  }
-  _onLeftClick(e) {
-    console.log('left');
-    e.preventDefault();
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'text-align-left'));
-  }
-  _onRightClick(e) {
-    console.log('right');
-    e.preventDefault();
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'text-align-right'));
-  }
-  _onJustifyClick(e) {
-    console.log('just');
-    e.preventDefault();
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'text-align-justify'));
-  }
-  _onSizeClick(e) {
-    e.preventDefault();
-    // this.onChange(styles.fontSize.toggle(this.state.editorState, '45px'));
-    this.setState({
-      fontMenuOpen: true,
-      anchorEl: e.currentTarget
-    })
-  }
-
-  handleSizeChange(e, size){
-    e.preventDefault();
-    this.onChange(styles.fontSize.toggle(this.state.editorState, size));
-      }
-
-  // _onBulletClick(e) {
-  //   e.preventDefault();
-  //   this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'bullet-lists'));
-  // }  --> make this in an image of lists
-
-
-  render() {
-
-    console.log('menu open', this.state.fontMenuOpen);
-
-    return (<div>
-      <h1>Horizons Docs</h1>
-      <RaisedButton color="primary" onMouseDown={(e) => this._onBoldClick(e)}>BOLD</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onUClick(e)}>U</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onIClick(e)}>I</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onSizeClick(e)}>Size</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onCenterClick(e)}>Center</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onLeftClick(e)}>Left</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onRightClick(e)}>Right</RaisedButton>
-      <RaisedButton onMouseDown={(e) => this._onJustifyClick(e)}>Justify</RaisedButton>
-      {/* <img src="" /> */}
-
-
-      <Popover
-        open={this.state.fontMenuOpen}
-        onRequestClose={this.handleMenuClose.bind(this)}
-        anchorEl={this.state.anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left'
-        }}
-        >
-        <MenuItem onClick={(e) => this.handleSizeChange(e, '12px')}>Small</MenuItem>
-        <MenuItem onClick={(e) => this.handleSizeChange(e, '36pxpx')}>Medium</MenuItem>
-        <MenuItem onClick={this.handleMenuClose.bind(this)}>Large</MenuItem>
-      </Popover>
-
-
-
-
-      {/* <Menu id="fontMenu"
-        open={false}
-        onClose={() => this.handleMenuClose()}
-      >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleClose}>My account</MenuItem>
-        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-      </Menu> */}
-=======
   // Format Text
     _onBoldClick(e) {
       e.preventDefault();
@@ -289,7 +184,6 @@ export default class TextEditor extends React.Component {
           <MenuItem onClick={(e) => this.handleColorChange(e, 'black')}>Black</MenuItem>
           <MenuItem onClick={(e) => this.handleColorChange(e, 'white')}>White</MenuItem>
         </Popover>
->>>>>>> 7910f847e9b0b58c7a48df13d76fa97c098d692f
 
       <Editor
         editorState={this.state.editorState}
