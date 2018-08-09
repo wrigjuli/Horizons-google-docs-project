@@ -36,6 +36,7 @@ export default class DocPortal extends React.Component {
 
   handleCreateDoc(event){
     event.preventDefault();
+    console.log("You clicked on create a doc!");
     socket.emit('createDoc', {
         title: this.state.create,
         body: '',
