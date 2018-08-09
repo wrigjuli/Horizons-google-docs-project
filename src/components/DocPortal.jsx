@@ -15,9 +15,9 @@ export default class DocPortal extends React.Component {
     }
   }
 
-  componentDidMount(){
+  getAllDocs(){
     //get list of docs from the server, use socket.on or socket.emit, put it in this.state.docs
-    socket.emit('getDocs', {
+  socket.emit('getDocs', {
       request: true
     },
   (res) => {
@@ -26,6 +26,10 @@ export default class DocPortal extends React.Component {
     })
     console.log("this.state.docs is ", this.state.docs);
   })
+  }
+
+  componentDidMount(){
+    getAllDocs();
   }
 
   handleCreate(event) {
@@ -48,6 +52,7 @@ export default class DocPortal extends React.Component {
             this.setState({
               create: '',
             })
+            this.getAllDocs();
           }
 
         })
