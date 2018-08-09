@@ -36,7 +36,8 @@ export default class Login extends React.Component {
     }, (result) => {
       if (result.loggedIn) {
         this.props.LogMeIn();
-        console.log("Success! Logged in");
+        console.log("Success! Logged in ", result);
+        this.props.PassID(result.id);
       } else {
         console.log("Not logged in", result);
         this.setState({

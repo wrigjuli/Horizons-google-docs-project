@@ -7,6 +7,7 @@ import { MenuItem, Popover, RaisedButton } from 'material-ui';
 import TextEditor from './components/TextEditor';
 import Login from './components/Login';
 import Register from './components/Register';
+import DocPortal from './components/DocPortal';
 // import Popover from 'material-ui/core/Popover';
 
 
@@ -15,7 +16,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      switchToReg: false
+      switchToReg: false,
+      UserID: '',
     }
   }
 
@@ -37,12 +39,21 @@ export default class App extends React.Component {
     })
   }
 
+  PassID(id){
+    this.setState({
+      UserID: id
+    })
+  }
+
   render(){
     return (
       <div>
-        {this.state.loggedIn ? <TextEditor/> : this.state.switchToReg ? <Register
-          SwitchToLog = {()=>this.SwitchToLog()} /> :
-          <Login SwitchToReg = {() => this.SwitchToReg()} LogMeIn = {()=>this.LogMeIn()}/>}
+        {this.state.loggedIn ? <DocPortal
+        PassID = {this.state.UserID}/> : this.state.switchToReg ? <Register
+          SwitchToLog = {(id)=>this.SwitchToLog(id)} /> :
+          <Login
+            PassID = {(id) => this.PassID(id)}
+            SwitchToReg = {() => this.SwitchToReg()} LogMeIn = {()=>this.LogMeIn()}/>}
       </div>
     )
   }
