@@ -29,7 +29,7 @@ export default class DocPortal extends React.Component {
   }
 
   componentDidMount(){
-    getAllDocs();
+    this.getAllDocs();
   }
 
   handleCreate(event) {
