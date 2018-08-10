@@ -9,6 +9,7 @@ var Doc = models.Doc;
 mongoose.connect(process.env.MONGODB_URI);
 
 io.on('connection', function (socket) {
+
   socket.on('login', function (data, next) {
     console.log('LOGIN REQUEST', data)
 
@@ -16,19 +17,27 @@ io.on('connection', function (socket) {
           if (err) {
             next(err);
           } else if (user && user.password === data.password){
-            next({loggedIn: true})
+            next({loggedIn: true, id: user._id})
           } else {
             next({loggedIn: false})
           }
         });
-
-    // if (data.username === 'Julie' && data.password === 'hello1') next({loggedIn: true})
-    // else next({loggedIn: false})
   });
 
-  socket.on('createDocument', function(data, next) {
+  socket.on('test', function(data, next) {
     console.log('data from client ', data);
     next({responseFromServer: 'Hi'})
+  })
+
+  socket.on('getDocs', function(data, next) {
+    console.log('data from client in getDocs ', data);
+    Doc.find({}, function(err, docs){
+      if (err) {
+        next({error: err});
+      } else {
+        next({docs: docs})
+      }
+    })
   })
 
   socket.on('createUser', function(data,next) {
@@ -48,7 +57,7 @@ io.on('connection', function (socket) {
     })
   })
 
-  socket.on('testDoc', function(data,next) {
+  socket.on('createDoc', function(data,next) {
     console.log("document info from client", data);
 
     var doc = new Doc({
@@ -66,21 +75,18 @@ io.on('connection', function (socket) {
     })
   })
 
+  socket.on('getSingleDoc', function(data,next) {
+    console.log("The document id is ", data);
+      Doc.findOne({_id: data.id}, function(err, doc) {
+        if (err) {
+          next(err);
+        } else {
+          next({doc: doc})
+        }
+      });
+  })
+
 });
 
-// app.post('/testUser', function(req, res){
-//   console.log("username is :", username, " password is: ", password);
-//   var user = new User({
-//     username: req.body.username,
-//     password: req.body.password
-//   });
-  // user.save(function(err) {
-  //   if(err) {
-  //     res.status(500).json(err);
-  //   } else {
-  //     res.status(200).json({"success": true})
-  //   }
-  // })
-// })
 
 server.listen(1337);

@@ -20,9 +20,8 @@ var docSchema = mongoose.Schema({
   },
   body: String,
   createdby: {
-    type: Object,
-    required: true
-  },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'},
   usersCanEdit: [],
 })
 
